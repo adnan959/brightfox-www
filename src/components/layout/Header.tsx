@@ -46,17 +46,27 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           <Logo />
 
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-4">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-body font-medium transition-colors pb-1 ${
+                className={`relative font-body font-medium transition-colors px-3 py-1.5 ${
                   isActive(link.href)
-                    ? "text-orange border-b-2 border-orange"
-                    : "text-brown hover:text-orange border-b-2 border-transparent"
+                    ? "text-orange"
+                    : "text-brown hover:text-orange"
                 }`}
               >
+                {isActive(link.href) && (
+                  <svg
+                    className="absolute -inset-x-1.5 -inset-y-1 -z-1 text-orange/15"
+                    viewBox="0 0 120 60"
+                    preserveAspectRatio="none"
+                    fill="currentColor"
+                  >
+                    <path d="M15,52 C4,46 -2,32 6,18 C12,6 28,-4 55,4 C78,-6 102,2 114,18 C124,32 118,50 104,54 C88,62 68,56 55,58 C38,60 26,58 15,52 Z" />
+                  </svg>
+                )}
                 {link.label}
               </Link>
             ))}
